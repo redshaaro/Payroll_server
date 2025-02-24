@@ -1,0 +1,309 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "mysql"
+  url               = env("DATABASE_URL")
+  
+  shadowDatabaseUrl = env("DATABASE_REPLICA_URL")
+}
+
+model hrc_employee_assignments {
+  id                               BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  source                           String?
+  assignment_name                  String?
+  assignment_status                String?
+  PersonId                         BigInt?
+  AssignmentId                     BigInt?
+  end_effective_date               DateTime? @db.DateTime(0)
+  start_effective_date             DateTime? @db.DateTime(0)
+  mapping_set_value                String?
+  person_id                        BigInt?
+  assignment_id                    BigInt?
+  EffectiveStartDate               DateTime? @db.DateTime(0) // check if period exists in range 
+  EffectiveEndDate                 DateTime? @db.DateTime(0) //
+  created_at                       DateTime? @db.Timestamp(0)
+  updated_at                       DateTime? @db.Timestamp(0)
+  deleted_at                       DateTime? @db.Timestamp(0)
+  PeriodOfServiceId                String?
+  LegalEntityId                    String?
+  integration_date                 String?
+  checked_at                       String?
+  StepEffectiveStartDate           DateTime? @db.Date
+  StepEffectiveEndDate             DateTime? @db.Date
+  GradeStepId                      String?
+  AssignmentNumber                 BigInt? //check
+  AssignmentName                   String?   @db.Text
+  ActionCode                       String?   @db.Text
+  ActionName                       String?   @db.Text
+  ReasonCode                       String?   @db.Text
+  ReasonName                       String?   @db.Text
+  EffectiveSequence                String?   @db.Text
+  EffectiveLatestChange            String?   @db.Text
+  BusinessUnitId                   String?   @db.Text
+  BusinessUnitName                 String?   @db.Text
+  AssignmentType                   String?   @db.Text
+  AssignmentTypeMeaning            String?   @db.Text
+  AssignmentStatusTypeId           String?   @db.Text
+  AssignmentStatusTypeCode         String?   @db.Text
+  AssignmentStatusType             String?   @db.Text //active or inactive
+  SystemPersonType                 String?   @db.Text
+  UserPersonTypeId                 String?   @db.Text
+  UserPersonType                   String?   @db.Text
+  ProposedUserPersonTypeId         String?   @db.Text
+  ProposedUserPersonType           String?   @db.Text
+  ProjectedStartDate               String?   @db.Text
+  ProjectedEndDate                 String?   @db.Text
+  PrimaryFlag                      String?   @db.Text
+  PrimaryAssignmentFlag            String?   @db.Text
+  PositionId                       String?   @db.Text
+  PositionCode                     String?   @db.Text
+  PositionName                     String?   @db.Text
+  SynchronizeFromPositionFlag      String?   @db.Text
+  JobId                            String?   @db.Text
+  JobCode                          String?   @db.Text
+  JobName                          String?   @db.Text
+  GradeId                          String?   @db.Text
+  GradeCode                        String?   @db.Text
+  GradeName                        String?   @db.Text
+  GradeLadderId                    String?   @db.Text
+  GradeLadderName                  String?   @db.Text
+  GradeStepEligibilityFlag         String?   @db.Text
+  GradeCeilingStepId               String?   @db.Text
+  GradeCeilingStep                 String?   @db.Text
+  DepartmentId                     String?   @db.Text
+  DepartmentName                   String?   @db.Text
+  ReportingEstablishmentId         String?   @db.Text
+  ReportingEstablishmentName       String?   @db.Text
+  LocationId                       String?   @db.Text
+  LocationCode                     String?   @db.Text
+  LocationName                     String?   @db.Text
+  WorkAtHomeFlag                   String?   @db.Text
+  AssignmentCategory               String?   @db.Text
+  AssignmentCategoryMeaning        String?   @db.Text
+  WorkerCategory                   String?   @db.Text
+  WorkerCategoryMeaning            String?   @db.Text
+  PermanentTemporary               String?   @db.Text
+  PermanentTemporaryMeaning        String?   @db.Text
+  FullPartTime                     String?   @db.Text
+  FullPartTimeMeaning              String?   @db.Text
+  ManagerFlag                      String?   @db.Text
+  HourlySalariedCode               String?   @db.Text
+  HourlySalariedMeaning            String?   @db.Text
+  NormalHours                      String?   @db.Text
+  Frequency                        String?   @db.Text
+  FrequencyMeaning                 String?   @db.Text
+  StartTime                        String?   @db.Text
+  EndTime                          String?   @db.Text
+  SeniorityBasis                   String?   @db.Text
+  SeniorityBasisMeaning            String?   @db.Text
+  ProbationPeriod                  String?   @db.Text
+  ProbationPeriodUnit              String?   @db.Text
+  ProbationPeriodUnitMeaning       String?   @db.Text
+  ProbationEndDate                 String?   @db.Text
+  NoticePeriod                     String?   @db.Text
+  NoticePeriodUOM                  String?   @db.Text
+  NoticePeriodUOMMeaning           String?   @db.Text
+  WorkTaxAddressId                 String?   @db.Text
+  ExpenseCheckSendToAddress        String?   @db.Text
+  ExpenseCheckSendToAddressMeaning String?   @db.Text
+  RetirementAge                    String?   @db.Text
+  RetirementDate                   String?   @db.Text
+  LabourUnionMemberFlag            String?   @db.Text
+  UnionId                          String?   @db.Text
+  UnionName                        String?   @db.Text
+  BargainingUnitCode               String?   @db.Text
+  BargainingUnitMeaning            String?   @db.Text
+  CollectiveAgreementId            String?   @db.Text
+  CollectiveAgreementName          String?   @db.Text
+  ContractId                       String?   @db.Text
+  ContractNumber                   String?   @db.Text
+  InternalBuilding                 String?   @db.Text
+  InternalFloor                    String?   @db.Text
+  InternalOfficeNumber             String?   @db.Text
+  InternalMailstop                 String?   @db.Text
+  DefaultExpenseAccount            String?   @db.Text
+  PeopleGroup                      String?   @db.Text
+  StandardWorkingHours             String?   @db.Text
+  StandardFrequency                String?   @db.Text
+  AdjustedFTE                      String?   @db.Text
+  AnnualWorkingDuration            String?   @db.Text
+  AnnualWorkingDurationUnits       String?   @db.Text
+  AnnualWorkingRatio               String?   @db.Text
+  AssignmentStandardFrequency      String?   @db.Text
+  AssignmentStandardWorkingHours   String?   @db.Text
+  StandardAnnualWorkingDuration    String?   @db.Text
+  CreatedBy                        String?   @db.Text
+  CreationDate                     String?   @db.Text
+  LastUpdatedBy                    String?   @db.Text
+  LastUpdateDate                   String?   @db.Text
+  /// This field was commented out because of an invalid name. Please provide a valid one that matches [a-zA-Z][a-zA-Z0-9_]*
+  // 0 String? @map("0") @db.Text
+  /// This field was commented out because of an invalid name. Please provide a valid one that matches [a-zA-Z][a-zA-Z0-9_]*
+  assignmentsDFF                   String?   @db.Text
+  gradeSteps                       String?   @db.Text
+
+  @@unique([AssignmentId, PersonId, start_effective_date, assignment_status], map: "unique_id")
+}
+
+model hrc_employees {
+  id                 BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  name               String
+  person_id          BigInt?
+  person_number      String?
+  source             String?
+  employee_set_id    Int?
+  legal_entity_id    Int?
+  work_email         String?
+  Country            String?
+  NationalId         String?
+  HireDate           DateTime? @db.Date
+  TerminationDate    DateTime? @db.Date
+  researchday        String?
+  second_day_off     String?
+  workschedule       String?
+  PersonId           String?   @unique(map: "unique_id")
+  created_at         DateTime? @db.Timestamp(0)
+  updated_at         DateTime? @db.Timestamp(0)
+  deleted_at         DateTime? @db.Timestamp(0)
+  WorkEmail          String?
+  api_token          String?
+  DisplayName        String?
+  PersonNumber       String?   @db.Text
+  DateOfBirth        String?   @db.Text
+  CountryOfBirth     String?   @db.Text
+  CountryOfBirthName String?   @db.Text
+  LocalDisplayName   String?   @db.Text
+  FullName           String?   @db.Text
+  gender             String?
+  legislativeInfo    String?   @db.Text
+}
+
+model pr_element_inputs {
+  id                BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  slug              String?   @unique(map: "pr_element_inputs_slug_unique")
+  name              String
+  default           String
+  unit              String?
+  sequence          Int?
+  maximum           String?
+  minimum           String?
+  required          String?
+  user_enterable    String?
+  database_item     String?
+  element_id        Int?
+  created_at        DateTime? @db.Timestamp(0)
+  updated_at        DateTime? @db.Timestamp(0)
+  deleted_at        DateTime? @db.DateTime(0)
+  fusion_element_id String?
+  fusion_input_id   String?
+
+  @@index([element_id], map: "pr_element_inputs_element_id_foreign")
+}
+
+model pr_element_link {
+  id             BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  pr_elements_id String?
+  payroll_id     String?
+  created_at     DateTime? @db.Timestamp(0)
+  updated_at     DateTime? @db.Timestamp(0)
+  deleted_at     DateTime? @db.DateTime(0)
+}
+
+model pr_elements {
+  id                            BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  name                          String
+  priority                      String
+  type                          String
+  is_payroll_transferred        Int?
+  formula                       String?   @db.LongText
+  start_effective_date          DateTime? @db.Date
+  end_effective_date            DateTime? @db.Date
+  sequence                      Int?      @unique(map: "pr_elements_sequence_unique")
+  is_recurring                  String?
+  created_at                    DateTime? @db.Timestamp(0)
+  updated_at                    DateTime? @db.Timestamp(0)
+  currency_id                   Int?
+  deleted_at                    DateTime? @db.DateTime(0)
+  name_ar                       String?
+  mapping_set_credit_value      String?
+  mapping_set_site_credit_value String?
+  mapping_set_debit_value       String?
+  mapping_set_site_debit_value  String?
+  mapping_set_value             String?
+  display_in_run_report         String?
+}
+
+model pr_payroll_assignment {
+  id                   BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  payroll_id           Int? //
+  assignment_id        BigInt?
+  start_effective_date DateTime? @db.Date
+  end_effective_date   DateTime? @db.Date
+  assignment_number    String?
+  person_id            BigInt?
+  created_at           DateTime? @db.Timestamp(0)
+  updated_at           DateTime? @db.Timestamp(0)
+  deleted_at           DateTime? @db.Timestamp(0)
+}
+
+model pr_payrolls {
+  id                   BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  name                 String
+  period_end_date      DateTime? @db.Date
+  start_effective_date DateTime  @db.Date
+  end_effective_date   DateTime  @db.Date
+  created_at           DateTime? @db.Timestamp(0)
+  updated_at           DateTime? @db.Timestamp(0)
+  deleted_at           DateTime? @db.DateTime(0)
+  logo                 String?
+  payroll_type         String
+  mapping_set_value    String?
+  address              String?
+  send_fusion          String?
+  business_unit_id     String?
+}
+
+model pr_periods {
+  id              BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  name            String
+  from            String?
+  to              String?
+  closed          Boolean   @default(false)
+  soft_closed     Boolean   @default(false)
+  payroll_id      Int?
+  created_at      DateTime? @db.Timestamp(0)
+  updated_at      DateTime? @db.Timestamp(0)
+  deleted_at      DateTime? @db.DateTime(0)
+  status          String?
+  run_status      String?
+  total_employees String?
+  run_employees   String?
+  closed_at       String?
+  closed_by       String?
+  run_by          String?
+  run_at          String?
+}
+
+model pr_element_entries {
+  id                  BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  assignment_id       BigInt    @db.UnsignedBigInt
+  assignment_number   String?
+  person_id           BigInt    @db.UnsignedBigInt
+  period_id           BigInt    @db.UnsignedBigInt
+  pr_element_id       BigInt?   @db.UnsignedBigInt
+  pr_element_type     String?
+  pr_element_input_id BigInt    @db.UnsignedBigInt
+  value               String?
+  date                DateTime? @db.Date
+  retro               Boolean   @default(false)
+  file_id             String
+  is_off_cycle        Boolean   @default(false)
+  created_at          DateTime? @default(now()) @db.Timestamp(0)
+  updated_at          DateTime? @updatedAt @db.Timestamp(0)
+  deleted_at          DateTime? @db.Timestamp(0)
+
+  @@index([period_id(sort: Desc)], map: "period_desc_index")
+  @@index([assignment_id], map: "person")
+}
